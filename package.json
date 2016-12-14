@@ -12,15 +12,19 @@
     "url": "git+https://github.com/videodromm/website.git"
   },
   "author": "Bruce LANE",
-  "license": "GNU Affero 3",
+  "license": "GPL-3.0",
   "bugs": {
     "url": "https://github.com/videodromm/website/issues"
   },
   "homepage": "https://github.com/videodromm/website#readme",
   "dependencies": {
+    "axios": "^0.15.3",
+    "body-parser": "^1.15.2",
     "ejs": "^2.5.5",
     "express": "^4.14.0",
+    "json-loader": "^0.5.4",
     "mongodb": "^2.2.15",
+    "node-sass-middleware": "^0.10.0",
     "react": "^15.4.1",
     "react-dom": "^15.4.1"
   },
