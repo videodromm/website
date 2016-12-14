@@ -1,7 +1,28 @@
-var debug = process.env.NODE_ENV !== "production";
+/*var debug = process.env.NODE_ENV !== "production";
 var webpack = require('webpack');
-var path = require('path');
+var path = require('path');*/
 
+module.exports = {
+  entry: './src/index.js',
+  output: {
+    path: __dirname + '/public',
+    filename: 'bundle.js'
+  },
+  module: {
+    loaders: [
+      {
+        test: /\.json$/,
+        loader: 'json-loader'
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel-loader'
+      }
+    ]
+  }
+};
+
+/* seems not to work
 module.exports = {
   entry: './src/index.js',
   devtool: debug ? "inline-sourcemap" : null,
@@ -19,13 +40,9 @@ module.exports = {
       { test: /\.css$/, loader: "style-loader!css-loader" },
     ]
   },
-  output: {
-    path: path.join(__dirname, "src"),
-    filename: "main.min.js"
-  },
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
     new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
   ],
-};
+};*/

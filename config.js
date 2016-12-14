@@ -1,5 +1,5 @@
 const env = process.env;
 
 export default {
-    port: env.PORT || 6060
+    port: env.PORT || 7070
 };
