@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon --exec babel-node server.js --ignore public/",
-    "dev": "webpack -wd"
+     "wd": "webpack-dev-server --content-base src --inline --hot",
+   "dev": "webpack -wd",
+    "deploy": "NODE_ENV=production webpack -p"
   },
   "repository": {
     "type": "git",
