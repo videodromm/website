@@ -1,14 +1,25 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const Uniform = (uniform) => (
-  <div className="Uniform">
-    <div className="uniform-name">
-      {uniform.uniformName}
-    </div>
-    <div className="uniform-info">
-      {uniform.uniformInfo}
-    </div>
-  </div>
-);
+class Uniform extends Component {
+  handleClick = () => {
+    console.log(this.props.uniformName);
+  }
+  render() {
+    return (
+     <div className="link Uniform" onClick={this.handleClick}>
+        <div className="uniform-name">
+          {this.props.uniformName}
+        </div>
+        <div className="uniform-info">
+          {this.props.uniformInfo}
+        </div>
+      </div>
+    );
+  }
+}
+Uniform.propTypes = {
+  uniformName: React.PropTypes.string.isRequired,
+  uniformInfo: React.PropTypes.string.isRequired
+};
  
 export default Uniform;

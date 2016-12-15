@@ -2,3 +2,6 @@
   border: 1px solid #ccc; }
   .Uniform .uniform-name {
     font-weight: bold; }
+
+.link {
+  cursor: pointer; }
