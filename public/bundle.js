@@ -57,17 +57,13 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
-	var _uniforms = __webpack_require__(/*! ./data/uniforms.json */ 180);
-	
-	var _uniforms2 = _interopRequireDefault(_uniforms);
-	
 	var _App = __webpack_require__(/*! ./components/App */ 178);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, { uniforms: _uniforms2.default.uniforms }), document.getElementById('root'));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('root'));
 
 /***/ },
 /* 1 */
@@ -22078,6 +22074,10 @@
 	
 	var _Uniform2 = _interopRequireDefault(_Uniform);
 	
+	var _uniforms = __webpack_require__(/*! ../data/uniforms */ 180);
+	
+	var _uniforms2 = _interopRequireDefault(_uniforms);
+	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -22101,14 +22101,17 @@
 	    }
 	
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
-	      pageHeader: 'Titre'
+	      pageHeader: 'Titre',
+	      uniforms: []
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
 	  _createClass(App, [{
 	    key: 'componentDidMount',
 	    value: function componentDidMount() {
-	      console.log(this.props.uniforms[0].uniformInfo);
+	      this.setState({
+	        uniforms: _uniforms2.default.uniforms
+	      });
 	    }
 	  }, {
 	    key: 'render',
@@ -22120,7 +22123,7 @@
 	        _react2.default.createElement(
 	          'div',
 	          null,
-	          this.props.uniforms.map(function (uniform) {
+	          this.state.uniforms.map(function (uniform) {
 	            return _react2.default.createElement(_Uniform2.default, _extends({ key: uniform.id }, uniform));
 	          })
 	        )

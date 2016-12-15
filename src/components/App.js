@@ -1,20 +1,24 @@
 import React from 'react';
 import Header from './Header';
 import Uniform from './Uniform';
+import data from '../data/uniforms';
 
 class App extends React.Component {
   state = { 
-    pageHeader: 'Titre'
+    pageHeader: 'Titre',
+    uniforms: []
   };
   componentDidMount() {
-    console.log(this.props.uniforms[0].uniformInfo);
+    this.setState({
+      uniforms: data.uniforms
+    });
   };
   render() {
     return (
     <div className="App">
         <Header message={this.state.pageHeader} />
         <div>
-          {this.props.uniforms.map(uniform => 
+          {this.state.uniforms.map(uniform => 
             <Uniform key={uniform.id} {...uniform} />
           )}
         </div>
