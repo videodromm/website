@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 class Uniform extends Component {
   handleClick = () => {
-    console.log(this.props.uniformName);
+    this.props.onClick(this.props.id);
   }
   render() {
     return (
@@ -18,8 +18,10 @@ class Uniform extends Component {
   }
 }
 Uniform.propTypes = {
+  id: React.PropTypes.number.isRequired,
   uniformName: React.PropTypes.string.isRequired,
-  uniformInfo: React.PropTypes.string.isRequired
+  uniformInfo: React.PropTypes.string.isRequired,
+  onClick: React.PropTypes.func.isRequired
 };
  
 export default Uniform;

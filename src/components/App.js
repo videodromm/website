@@ -1,7 +1,9 @@
 import React from 'react';
 import Header from './Header';
 import UniformList from './UniformList';
-//import axios from 'axios';
+
+const pushState = (obj, url) =>
+  window.history.pushState(obj, '', url);
 
 class App extends React.Component {
   state = { 
@@ -9,21 +11,24 @@ class App extends React.Component {
     uniforms: this.props.initialUniforms
   };
   componentDidMount() {
-    // ajax req
-    /*axios.get('/api/uniforms')
-      .then(resp => {
-        this.setState({
-          uniforms: resp.data.uniforms
-        });
-      })
-      .catch(console.error)*/
-    
+  }
+  fetchUniform = (uniformId) => {
+    pushState(
+      { currentUniform: uniformId },
+      `/uniform/${uniformId}`
+    );
+    // now the array is reduced as an object we can lookup by id
+    this.setState({
+      pageHeader: this.state.uniforms[uniformId].uniformName
+    });
   }
   render() {
     return (
     <div className="App">
         <Header message={this.state.pageHeader} />
-        <UniformList uniforms={this.state.uniforms} />
+        <UniformList 
+          onUniformClick={this.fetchUniform}
+          uniforms={this.state.uniforms} />
     </div>
     );
   }

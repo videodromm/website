@@ -22080,7 +22080,9 @@
 	
 	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 	
-	//import axios from 'axios';
+	var pushState = function pushState(obj, url) {
+	  return window.history.pushState(obj, '', url);
+	};
 	
 	var App = function (_React$Component) {
 	  _inherits(App, _React$Component);
@@ -22099,22 +22101,18 @@
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
 	      pageHeader: 'Titre',
 	      uniforms: _this.props.initialUniforms
+	    }, _this.fetchUniform = function (uniformId) {
+	      pushState({ currentUniform: uniformId }, '/uniform/' + uniformId);
+	      // now the array is reduced as an object we can lookup by id
+	      _this.setState({
+	        pageHeader: _this.state.uniforms[uniformId].uniformName
+	      });
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
 	  _createClass(App, [{
 	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      // ajax req
-	      /*axios.get('/api/uniforms')
-	        .then(resp => {
-	          this.setState({
-	            uniforms: resp.data.uniforms
-	          });
-	        })
-	        .catch(console.error)*/
-	
-	    }
+	    value: function componentDidMount() {}
 	  }, {
 	    key: 'render',
 	    value: function render() {
@@ -22122,7 +22120,9 @@
 	        'div',
 	        { className: 'App' },
 	        _react2.default.createElement(_Header2.default, { message: this.state.pageHeader }),
-	        _react2.default.createElement(_UniformList2.default, { uniforms: this.state.uniforms })
+	        _react2.default.createElement(_UniformList2.default, {
+	          onUniformClick: this.fetchUniform,
+	          uniforms: this.state.uniforms })
 	      );
 	    }
 	  }]);
@@ -22142,7 +22142,7 @@
 	"use strict";
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
 	
 	var _react = __webpack_require__(/*! react */ 1);
@@ -22152,17 +22152,17 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var Header = function Header(_ref) {
-	    var message = _ref.message;
+	  var message = _ref.message;
 	
-	    return _react2.default.createElement(
-	        "h2",
-	        { className: "Header text-center" },
-	        message
-	    );
+	  return _react2.default.createElement(
+	    "h2",
+	    { className: "Header text-center" },
+	    message
+	  );
 	};
 	
 	Header.propTypes = {
-	    message: _react2.default.PropTypes.string
+	  message: _react2.default.PropTypes.string
 	};
 	
 	exports.default = Header;
@@ -22193,18 +22193,23 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var UniformList = function UniformList(_ref) {
-	  var uniforms = _ref.uniforms;
+	  var uniforms = _ref.uniforms,
+	      onUniformClick = _ref.onUniformClick;
 	  return _react2.default.createElement(
 	    'div',
 	    { className: 'UniformList' },
-	    uniforms.map(function (uniform) {
-	      return _react2.default.createElement(_Uniform2.default, _extends({ key: uniform.id }, uniform));
+	    Object.keys(uniforms).map(function (uniformId) {
+	      return _react2.default.createElement(_Uniform2.default, _extends({
+	        key: uniformId,
+	        onClick: onUniformClick
+	      }, uniforms[uniformId]));
 	    })
 	  );
 	};
 	
 	UniformList.propTypes = {
-	  uniforms: _react2.default.PropTypes.array
+	  uniforms: _react2.default.PropTypes.object,
+	  onUniformClick: _react2.default.PropTypes.func.isRequired
 	};
 	
 	exports.default = UniformList;
@@ -22251,7 +22256,7 @@
 	    }
 	
 	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = Uniform.__proto__ || Object.getPrototypeOf(Uniform)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function () {
-	      console.log(_this.props.uniformName);
+	      _this.props.onClick(_this.props.id);
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
@@ -22279,8 +22284,10 @@
 	}(_react.Component);
 	
 	Uniform.propTypes = {
+	  id: _react2.default.PropTypes.number.isRequired,
 	  uniformName: _react2.default.PropTypes.string.isRequired,
-	  uniformInfo: _react2.default.PropTypes.string.isRequired
+	  uniformInfo: _react2.default.PropTypes.string.isRequired,
+	  onClick: _react2.default.PropTypes.func.isRequired
 	};
 	
 	exports.default = Uniform;

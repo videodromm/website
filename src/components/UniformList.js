@@ -1,16 +1,20 @@
 import React from 'react';
 import Uniform from './Uniform';
 
-const UniformList = ({uniforms}) => (
+const UniformList = ({uniforms, onUniformClick}) => (
   <div className="UniformList">
-    {uniforms.map(uniform => 
-        <Uniform key={uniform.id} {...uniform} />
+    {Object.keys(uniforms).map(uniformId => 
+        <Uniform 
+        key={uniformId} 
+        onClick={onUniformClick}
+        {...uniforms[uniformId]} />
     )} 
   </div>
 );
 
 UniformList.propTypes = {
-  uniforms: React.PropTypes.array
+  uniforms: React.PropTypes.object,
+  onUniformClick: React.PropTypes.func.isRequired
 };
 
 export default UniformList;
