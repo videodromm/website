@@ -1,22 +1,22 @@
 import React from 'react';
 import Header from './Header';
 import Uniform from './Uniform';
-import axios from 'axios';
+//import axios from 'axios';
 
 class App extends React.Component {
   state = { 
     pageHeader: 'Titre',
-    uniforms: []
+    uniforms: this.props.initialUniforms
   };
   componentDidMount() {
     // ajax req
-    axios.get('/api/uniforms')
+    /*axios.get('/api/uniforms')
       .then(resp => {
         this.setState({
           uniforms: resp.data.uniforms
         });
       })
-      .catch(console.error)
+      .catch(console.error)*/
     
   };
   render() {
