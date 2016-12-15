@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Uniform from './Uniform';
-import data from '../data/uniforms';
+import axios from 'axios';
 
 class App extends React.Component {
   state = { 
@@ -9,9 +9,15 @@ class App extends React.Component {
     uniforms: []
   };
   componentDidMount() {
-    this.setState({
-      uniforms: data.uniforms
-    });
+    // ajax req
+    axios.get('/api/uniforms')
+      .then(resp => {
+        this.setState({
+          uniforms: resp.data.uniforms
+        });
+      })
+      .catch(console.error)
+    
   };
   render() {
     return (
