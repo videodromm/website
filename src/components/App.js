@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import Uniform from './Uniform';
+import UniformList from './UniformList';
 //import axios from 'axios';
 
 class App extends React.Component {
@@ -18,16 +18,12 @@ class App extends React.Component {
       })
       .catch(console.error)*/
     
-  };
+  }
   render() {
     return (
     <div className="App">
         <Header message={this.state.pageHeader} />
-        <div>
-          {this.state.uniforms.map(uniform => 
-            <Uniform key={uniform.id} {...uniform} />
-          )}
-        </div>
+        <UniformList uniforms={this.state.uniforms} />
     </div>
     );
   }

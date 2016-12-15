@@ -22058,8 +22058,6 @@
 	  value: true
 	});
 	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(/*! react */ 1);
@@ -22070,9 +22068,9 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _Uniform = __webpack_require__(/*! ./Uniform */ 181);
+	var _UniformList = __webpack_require__(/*! ./UniformList */ 180);
 	
-	var _Uniform2 = _interopRequireDefault(_Uniform);
+	var _UniformList2 = _interopRequireDefault(_UniformList);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22124,13 +22122,7 @@
 	        'div',
 	        { className: 'App' },
 	        _react2.default.createElement(_Header2.default, { message: this.state.pageHeader }),
-	        _react2.default.createElement(
-	          'div',
-	          null,
-	          this.state.uniforms.map(function (uniform) {
-	            return _react2.default.createElement(_Uniform2.default, _extends({ key: uniform.id }, uniform));
-	          })
-	        )
+	        _react2.default.createElement(_UniformList2.default, { uniforms: this.state.uniforms })
 	      );
 	    }
 	  }]);
@@ -22176,7 +22168,48 @@
 	exports.default = Header;
 
 /***/ },
-/* 180 */,
+/* 180 */
+/*!***************************************!*\
+  !*** ./src/components/UniformList.js ***!
+  \***************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _Uniform = __webpack_require__(/*! ./Uniform */ 181);
+	
+	var _Uniform2 = _interopRequireDefault(_Uniform);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var UniformList = function UniformList(_ref) {
+	  var uniforms = _ref.uniforms;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'UniformList' },
+	    uniforms.map(function (uniform) {
+	      return _react2.default.createElement(_Uniform2.default, _extends({ key: uniform.id }, uniform));
+	    })
+	  );
+	};
+	
+	UniformList.propTypes = {
+	  uniforms: _react2.default.PropTypes.array
+	};
+	
+	exports.default = UniformList;
+
+/***/ },
 /* 181 */
 /*!***********************************!*\
   !*** ./src/components/Uniform.js ***!
