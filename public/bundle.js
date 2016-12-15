@@ -57,13 +57,17 @@
 	
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 	
+	var _uniforms = __webpack_require__(/*! ./data/uniforms.json */ 180);
+	
+	var _uniforms2 = _interopRequireDefault(_uniforms);
+	
 	var _App = __webpack_require__(/*! ./components/App */ 178);
 	
 	var _App2 = _interopRequireDefault(_App);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	_reactDom2.default.render(_react2.default.createElement(_App2.default, null), document.getElementById('root'));
+	_reactDom2.default.render(_react2.default.createElement(_App2.default, { uniforms: _uniforms2.default.uniforms }), document.getElementById('root'));
 
 /***/ },
 /* 1 */
@@ -22058,6 +22062,8 @@
 	  value: true
 	});
 	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _react = __webpack_require__(/*! react */ 1);
@@ -22067,6 +22073,10 @@
 	var _Header = __webpack_require__(/*! ./Header */ 179);
 	
 	var _Header2 = _interopRequireDefault(_Header);
+	
+	var _Uniform = __webpack_require__(/*! ./Uniform */ 181);
+	
+	var _Uniform2 = _interopRequireDefault(_Uniform);
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
@@ -22096,13 +22106,24 @@
 	  }
 	
 	  _createClass(App, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      console.log(this.props.uniforms[0].uniformInfo);
+	    }
+	  }, {
 	    key: 'render',
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
 	        { className: 'App' },
 	        _react2.default.createElement(_Header2.default, { message: this.state.pageHeader }),
-	        _react2.default.createElement('div', null)
+	        _react2.default.createElement(
+	          'div',
+	          null,
+	          this.props.uniforms.map(function (uniform) {
+	            return _react2.default.createElement(_Uniform2.default, _extends({ key: uniform.id }, uniform));
+	          })
+	        )
 	      );
 	    }
 	  }]);
@@ -22146,6 +22167,74 @@
 	};
 	
 	exports.default = Header;
+
+/***/ },
+/* 180 */
+/*!********************************!*\
+  !*** ./src/data/uniforms.json ***!
+  \********************************/
+/***/ function(module, exports) {
+
+	module.exports = {
+		"uniforms": [
+			{
+				"id": 12,
+				"uniformName": "iZoom",
+				"uniformInfo": "zoom level",
+				"uniformValue": -2.5,
+				"uniformMinValue": -3,
+				"uniformMaxValue": 3,
+				"defaultValue": 1
+			},
+			{
+				"id": 14,
+				"uniformName": "iExposure",
+				"uniformInfo": "exposure",
+				"uniformValue": 1.5,
+				"uniformMinValue": 0,
+				"uniformMaxValue": 3,
+				"defaultValue": 1
+			}
+		]
+	};
+
+/***/ },
+/* 181 */
+/*!***********************************!*\
+  !*** ./src/components/Uniform.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var Uniform = function Uniform(uniform) {
+	  return _react2.default.createElement(
+	    "div",
+	    { className: "Uniform" },
+	    _react2.default.createElement(
+	      "div",
+	      { className: "uniform-name" },
+	      uniform.uniformName
+	    ),
+	    _react2.default.createElement(
+	      "div",
+	      { className: "uniform-info" },
+	      uniform.uniformInfo
+	    )
+	  );
+	};
+	
+	exports.default = Uniform;
 
 /***/ }
 /******/ ]);
