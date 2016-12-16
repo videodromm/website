@@ -13,8 +13,8 @@ server.use(sassMiddleware({
 
 server.set('view engine', 'ejs');
 import serverRender from './serverRender';
-server.get('/', (req,res) => {
-  serverRender()
+server.get(['/', '/uniform/:uniformId'], (req,res) => {
+  serverRender(req.params.uniformId)
     .then(( {initialMarkup, initialData}) => {
       res.render('index', {
         initialMarkup,

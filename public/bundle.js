@@ -22074,7 +22074,7 @@
 	
 	var _UniformList2 = _interopRequireDefault(_UniformList);
 	
-	var _Uniform = __webpack_require__(/*! ./Uniform */ 182);
+	var _Uniform = __webpack_require__(/*! ./Uniform */ 181);
 	
 	var _Uniform2 = _interopRequireDefault(_Uniform);
 	
@@ -22121,6 +22121,15 @@
 	          uniforms: _extends({}, _this.state.uniforms, _defineProperty({}, uniform.id, uniform))
 	        });
 	      });
+	    }, _this.fetchUniformList = function () {
+	      pushState({ currentUniform: null }, '/');
+	      api.fetchUniformList().then(function (uniforms) {
+	        // now the array is reduced as an object we can lookup by id
+	        _this.setState({
+	          currentUniformId: null,
+	          uniforms: uniforms
+	        });
+	      });
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
 	  }
 	
@@ -22144,7 +22153,9 @@
 	    key: 'currentContent',
 	    value: function currentContent() {
 	      if (this.state.currentUniformId) {
-	        return _react2.default.createElement(_Uniform2.default, this.currentUniform);
+	        return _react2.default.createElement(_Uniform2.default, _extends({
+	          uniformListClick: this.fetchUniformList
+	        }, this.currentUniform));
 	      }
 	      return _react2.default.createElement(_UniformList2.default, {
 	        onUniformClick: this.fetchUniform,
@@ -22165,6 +22176,9 @@
 	  return App;
 	}(_react2.default.Component);
 	
+	App.propTypes = {
+	  initialData: _react2.default.PropTypes.object.isRequired
+	};
 	exports.default = App;
 
 /***/ },
@@ -22221,7 +22235,7 @@
 	
 	var _react2 = _interopRequireDefault(_react);
 	
-	var _UniformPreview = __webpack_require__(/*! ./UniformPreview */ 181);
+	var _UniformPreview = __webpack_require__(/*! ./UniformPreview */ 182);
 	
 	var _UniformPreview2 = _interopRequireDefault(_UniformPreview);
 	
@@ -22251,6 +22265,73 @@
 
 /***/ },
 /* 181 */
+/*!***********************************!*\
+  !*** ./src/components/Uniform.js ***!
+  \***********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Uniform = function (_Component) {
+	  _inherits(Uniform, _Component);
+	
+	  function Uniform() {
+	    _classCallCheck(this, Uniform);
+	
+	    return _possibleConstructorReturn(this, (Uniform.__proto__ || Object.getPrototypeOf(Uniform)).apply(this, arguments));
+	  }
+	
+	  _createClass(Uniform, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "Uniform" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "uniform-description" },
+	          this.props.description
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "home-link link",
+	            onClick: this.props.uniformListClick },
+	          "Uniform list"
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Uniform;
+	}(_react.Component);
+	
+	Uniform.propTypes = {
+	  description: _react.PropTypes.string.isRequired,
+	  uniformListClick: _react.PropTypes.func.isRequired
+	};
+	
+	exports.default = Uniform;
+
+/***/ },
+/* 182 */
 /*!******************************************!*\
   !*** ./src/components/UniformPreview.js ***!
   \******************************************/
@@ -22328,62 +22409,6 @@
 	exports.default = UniformPreview;
 
 /***/ },
-/* 182 */
-/*!***********************************!*\
-  !*** ./src/components/Uniform.js ***!
-  \***********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Uniform = function (_Component) {
-	  _inherits(Uniform, _Component);
-	
-	  function Uniform() {
-	    _classCallCheck(this, Uniform);
-	
-	    return _possibleConstructorReturn(this, (Uniform.__proto__ || Object.getPrototypeOf(Uniform)).apply(this, arguments));
-	  }
-	
-	  _createClass(Uniform, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        { className: "Uniform" },
-	        this.props.description
-	      );
-	    }
-	  }]);
-	
-	  return Uniform;
-	}(_react.Component);
-	
-	Uniform.propTypes = {
-	  description: _react.PropTypes.string.isRequired
-	};
-	
-	exports.default = Uniform;
-
-/***/ },
 /* 183 */
 /*!********************!*\
   !*** ./src/api.js ***!
@@ -22393,9 +22418,9 @@
 	'use strict';
 	
 	Object.defineProperty(exports, "__esModule", {
-	    value: true
+	  value: true
 	});
-	exports.fetchUniform = undefined;
+	exports.fetchUniformList = exports.fetchUniform = undefined;
 	
 	var _axios = __webpack_require__(/*! axios */ 184);
 	
@@ -22404,9 +22429,15 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
 	var fetchUniform = exports.fetchUniform = function fetchUniform(uniformId) {
-	    return _axios2.default.get('/api/uniforms/' + uniformId).then(function (resp) {
-	        return resp.data;
-	    });
+	  return _axios2.default.get('/api/uniforms/' + uniformId).then(function (resp) {
+	    return resp.data;
+	  });
+	};
+	
+	var fetchUniformList = exports.fetchUniformList = function fetchUniformList() {
+	  return _axios2.default.get('/api/uniforms').then(function (resp) {
+	    return resp.data.uniforms;
+	  });
 	};
 
 /***/ },

@@ -8,8 +8,12 @@ const pushState = (obj, url) =>
   window.history.pushState(obj, '', url);
 
 class App extends React.Component {
+  static propTypes = {
+    initialData: React.PropTypes.object.isRequired
+  };
   state = this.props.initialData;
   componentDidMount() {
+
   }
   fetchUniform = (uniformId) => {
     pushState(
@@ -27,6 +31,20 @@ class App extends React.Component {
       });
     }); 
   }
+  fetchUniformList = () => {
+    pushState(
+      { currentUniform: null },
+      `/`
+    );
+    api.fetchUniformList().then(uniforms => {
+      // now the array is reduced as an object we can lookup by id
+      this.setState({
+        currentUniformId: null,
+        uniforms
+      });
+    }); 
+  }
+
   currentUniform() {
     return this.state.uniforms[this.state.currentUniformId];
   }
@@ -38,11 +56,13 @@ class App extends React.Component {
   }
   currentContent() {
     if (this.state.currentUniformId) {
-      return <Uniform {...this.currentUniform} />;
+      return <Uniform 
+              uniformListClick={this.fetchUniformList}
+              {...this.currentUniform} />;
     }
     return <UniformList 
           onUniformClick={this.fetchUniform}
-          uniforms={this.state.uniforms} />
+          uniforms={this.state.uniforms} />;
   };
   render() {
     return (
