@@ -14,4 +14,10 @@ router.get('/uniforms', (req, res) => {
   });
 });
 
+router.get('/uniforms/:uniformId', (req, res) => {
+  let uniform = uniforms[req.params.uniformId];
+  uniform.description = 'yo';
+  res.send(uniform);
+});
+
 export default router;

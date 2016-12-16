@@ -4,6 +4,6 @@ import ReactDOM from 'react-dom';
 import App from './components/App';
 
 ReactDOM.render(
-    <App initialUniforms={window.initialData.uniforms} />, 
+    <App initialData={window.initialData} />, 
     document.getElementById('root')
 );

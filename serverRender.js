@@ -12,7 +12,7 @@ axios.get(`${config.serverUrl}/api/uniforms`)
   .then(resp => {
     return {
       initialMarkup: ReactDOMServer.renderToString(
-        <App initialUniforms={resp.data.uniforms} />
+        <App initialData={resp.data} />
       ),
       initialData: resp.data
     }; 

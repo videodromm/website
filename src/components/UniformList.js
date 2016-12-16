@@ -1,10 +1,10 @@
 import React from 'react';
-import Uniform from './Uniform';
+import UniformPreview from './UniformPreview';
 
 const UniformList = ({uniforms, onUniformClick}) => (
   <div className="UniformList">
     {Object.keys(uniforms).map(uniformId => 
-        <Uniform 
+        <UniformPreview 
         key={uniformId} 
         onClick={onUniformClick}
         {...uniforms[uniformId]} />
