@@ -7,13 +7,24 @@ import * as api from '../api';
 const pushState = (obj, url) =>
   window.history.pushState(obj, '', url);
 
+const onPopState = handler => {
+  window.onpopstate = handler;
+};
+
 class App extends React.Component {
   static propTypes = {
     initialData: React.PropTypes.object.isRequired
   };
   state = this.props.initialData;
   componentDidMount() {
-
+    onPopState((event) => {
+      this.setState({
+        currentUniformId: (event.state || {}).currentUniformId
+      });
+    });
+  }
+  componentWillUnmount() {
+    onPopState(null);
   }
   fetchUniform = (uniformId) => {
     pushState(
