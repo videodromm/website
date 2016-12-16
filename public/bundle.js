@@ -22070,13 +22070,13 @@
 	
 	var _Header2 = _interopRequireDefault(_Header);
 	
-	var _UniformList = __webpack_require__(/*! ./UniformList */ 180);
+	var _ShaderList = __webpack_require__(/*! ./ShaderList */ 210);
 	
-	var _UniformList2 = _interopRequireDefault(_UniformList);
+	var _ShaderList2 = _interopRequireDefault(_ShaderList);
 	
-	var _Uniform = __webpack_require__(/*! ./Uniform */ 181);
+	var _Shader = __webpack_require__(/*! ./Shader */ 209);
 	
-	var _Uniform2 = _interopRequireDefault(_Uniform);
+	var _Shader2 = _interopRequireDefault(_Shader);
 	
 	var _api = __webpack_require__(/*! ../api */ 183);
 	
@@ -22116,22 +22116,22 @@
 	      args[_key] = arguments[_key];
 	    }
 	
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = _this.props.initialData, _this.fetchUniform = function (uniformId) {
-	      pushState({ currentUniform: uniformId }, '/uniform/' + uniformId);
-	      api.fetchUniform(uniformId).then(function (uniform) {
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = App.__proto__ || Object.getPrototypeOf(App)).call.apply(_ref, [this].concat(args))), _this), _this.state = _this.props.initialData, _this.fetchShader = function (shaderId) {
+	      pushState({ currentShader: shaderId }, '/shader/' + shaderId);
+	      api.fetchShader(shaderId).then(function (shader) {
 	        // now the array is reduced as an object we can lookup by id
 	        _this.setState({
-	          currentUniformId: uniform.id,
-	          uniforms: _extends({}, _this.state.uniforms, _defineProperty({}, uniform.id, uniform))
+	          currentShaderId: shader.id,
+	          shaders: _extends({}, _this.state.shaders, _defineProperty({}, shader.id, shader))
 	        });
 	      });
-	    }, _this.fetchUniformList = function () {
-	      pushState({ currentUniform: null }, '/');
-	      api.fetchUniformList().then(function (uniforms) {
+	    }, _this.fetchShaderList = function () {
+	      pushState({ currentShader: null }, '/');
+	      api.fetchShaderList().then(function (shaders) {
 	        // now the array is reduced as an object we can lookup by id
 	        _this.setState({
-	          currentUniformId: null,
-	          uniforms: uniforms
+	          currentShaderId: null,
+	          shaders: shaders
 	        });
 	      });
 	    }, _temp), _possibleConstructorReturn(_this, _ret);
@@ -22144,7 +22144,7 @@
 	
 	      onPopState(function (event) {
 	        _this2.setState({
-	          currentUniformId: (event.state || {}).currentUniformId
+	          currentShaderId: (event.state || {}).currentShaderId
 	        });
 	      });
 	    }
@@ -22154,29 +22154,29 @@
 	      onPopState(null);
 	    }
 	  }, {
-	    key: 'currentUniform',
-	    value: function currentUniform() {
-	      return this.state.uniforms[this.state.currentUniformId];
+	    key: 'currentShader',
+	    value: function currentShader() {
+	      return this.state.shaders[this.state.currentShaderId];
 	    }
 	  }, {
 	    key: 'pageHeader',
 	    value: function pageHeader() {
-	      if (this.state.currentUniformId) {
-	        return this.currentUniform().uniformName;
+	      if (this.state.currentShaderId) {
+	        return this.currentShader().shaderName;
 	      }
 	      return 'Titre';
 	    }
 	  }, {
 	    key: 'currentContent',
 	    value: function currentContent() {
-	      if (this.state.currentUniformId) {
-	        return _react2.default.createElement(_Uniform2.default, _extends({
-	          uniformListClick: this.fetchUniformList
-	        }, this.currentUniform));
+	      if (this.state.currentShaderId) {
+	        return _react2.default.createElement(_Shader2.default, _extends({
+	          shaderListClick: this.fetchShaderList
+	        }, this.currentShader));
 	      }
-	      return _react2.default.createElement(_UniformList2.default, {
-	        onUniformClick: this.fetchUniform,
-	        uniforms: this.state.uniforms });
+	      return _react2.default.createElement(_ShaderList2.default, {
+	        onShaderClick: this.fetchShader,
+	        shaders: this.state.shaders });
 	    }
 	  }, {
 	    key: 'render',
@@ -22234,198 +22234,9 @@
 	exports.default = Header;
 
 /***/ },
-/* 180 */
-/*!***************************************!*\
-  !*** ./src/components/UniformList.js ***!
-  \***************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	var _UniformPreview = __webpack_require__(/*! ./UniformPreview */ 182);
-	
-	var _UniformPreview2 = _interopRequireDefault(_UniformPreview);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	var UniformList = function UniformList(_ref) {
-	  var uniforms = _ref.uniforms,
-	      onUniformClick = _ref.onUniformClick;
-	  return _react2.default.createElement(
-	    'div',
-	    { className: 'UniformList' },
-	    Object.keys(uniforms).map(function (uniformId) {
-	      return _react2.default.createElement(_UniformPreview2.default, _extends({
-	        key: uniformId,
-	        onClick: onUniformClick
-	      }, uniforms[uniformId]));
-	    })
-	  );
-	};
-	
-	UniformList.propTypes = {
-	  uniforms: _react2.default.PropTypes.object,
-	  onUniformClick: _react2.default.PropTypes.func.isRequired
-	};
-	
-	exports.default = UniformList;
-
-/***/ },
-/* 181 */
-/*!***********************************!*\
-  !*** ./src/components/Uniform.js ***!
-  \***********************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var Uniform = function (_Component) {
-	  _inherits(Uniform, _Component);
-	
-	  function Uniform() {
-	    _classCallCheck(this, Uniform);
-	
-	    return _possibleConstructorReturn(this, (Uniform.__proto__ || Object.getPrototypeOf(Uniform)).apply(this, arguments));
-	  }
-	
-	  _createClass(Uniform, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        { className: "Uniform" },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "uniform-description" },
-	          this.props.description
-	        ),
-	        _react2.default.createElement(
-	          "div",
-	          { className: "home-link link",
-	            onClick: this.props.uniformListClick },
-	          "Uniform list"
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return Uniform;
-	}(_react.Component);
-	
-	Uniform.propTypes = {
-	  description: _react.PropTypes.string.isRequired,
-	  uniformListClick: _react.PropTypes.func.isRequired
-	};
-	
-	exports.default = Uniform;
-
-/***/ },
-/* 182 */
-/*!******************************************!*\
-  !*** ./src/components/UniformPreview.js ***!
-  \******************************************/
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-	
-	var _react = __webpack_require__(/*! react */ 1);
-	
-	var _react2 = _interopRequireDefault(_react);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-	
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-	
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-	
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-	
-	var UniformPreview = function (_Component) {
-	  _inherits(UniformPreview, _Component);
-	
-	  function UniformPreview() {
-	    var _ref;
-	
-	    var _temp, _this, _ret;
-	
-	    _classCallCheck(this, UniformPreview);
-	
-	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-	      args[_key] = arguments[_key];
-	    }
-	
-	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = UniformPreview.__proto__ || Object.getPrototypeOf(UniformPreview)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function () {
-	      _this.props.onClick(_this.props.id);
-	    }, _temp), _possibleConstructorReturn(_this, _ret);
-	  }
-	
-	  _createClass(UniformPreview, [{
-	    key: "render",
-	    value: function render() {
-	      return _react2.default.createElement(
-	        "div",
-	        { className: "link Uniform", onClick: this.handleClick },
-	        _react2.default.createElement(
-	          "div",
-	          { className: "uniform-name" },
-	          this.props.uniformName
-	        ),
-	        _react2.default.createElement(
-	          "div",
-	          { className: "uniform-info" },
-	          this.props.uniformInfo
-	        )
-	      );
-	    }
-	  }]);
-	
-	  return UniformPreview;
-	}(_react.Component);
-	
-	UniformPreview.propTypes = {
-	  id: _react2.default.PropTypes.number.isRequired,
-	  uniformName: _react2.default.PropTypes.string.isRequired,
-	  uniformInfo: _react2.default.PropTypes.string.isRequired,
-	  onClick: _react2.default.PropTypes.func.isRequired
-	};
-	
-	exports.default = UniformPreview;
-
-/***/ },
+/* 180 */,
+/* 181 */,
+/* 182 */,
 /* 183 */
 /*!********************!*\
   !*** ./src/api.js ***!
@@ -22437,7 +22248,7 @@
 	Object.defineProperty(exports, "__esModule", {
 	  value: true
 	});
-	exports.fetchUniformList = exports.fetchUniform = undefined;
+	exports.fetchShaderList = exports.fetchShader = undefined;
 	
 	var _axios = __webpack_require__(/*! axios */ 184);
 	
@@ -22445,15 +22256,15 @@
 	
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 	
-	var fetchUniform = exports.fetchUniform = function fetchUniform(uniformId) {
-	  return _axios2.default.get('/api/uniforms/' + uniformId).then(function (resp) {
+	var fetchShader = exports.fetchShader = function fetchShader(shaderId) {
+	  return _axios2.default.get('/api/shaders/' + shaderId).then(function (resp) {
 	    return resp.data;
 	  });
 	};
 	
-	var fetchUniformList = exports.fetchUniformList = function fetchUniformList() {
-	  return _axios2.default.get('/api/uniforms').then(function (resp) {
-	    return resp.data.uniforms;
+	var fetchShaderList = exports.fetchShaderList = function fetchShaderList() {
+	  return _axios2.default.get('/api/shaders').then(function (resp) {
+	    return resp.data.shaders;
 	  });
 	};
 
@@ -23957,6 +23768,198 @@
 	    return callback.apply(null, arr);
 	  };
 	};
+
+/***/ },
+/* 209 */
+/*!**********************************!*\
+  !*** ./src/components/Shader.js ***!
+  \**********************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var Shader = function (_Component) {
+	  _inherits(Shader, _Component);
+	
+	  function Shader() {
+	    _classCallCheck(this, Shader);
+	
+	    return _possibleConstructorReturn(this, (Shader.__proto__ || Object.getPrototypeOf(Shader)).apply(this, arguments));
+	  }
+	
+	  _createClass(Shader, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "Shader" },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "shader-description" },
+	          this.props.description
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "home-link link",
+	            onClick: this.props.shaderListClick },
+	          "Shader list"
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return Shader;
+	}(_react.Component);
+	
+	Shader.propTypes = {
+	  description: _react.PropTypes.string.isRequired,
+	  shaderListClick: _react.PropTypes.func.isRequired
+	};
+	
+	exports.default = Shader;
+
+/***/ },
+/* 210 */
+/*!**************************************!*\
+  !*** ./src/components/ShaderList.js ***!
+  \**************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	var _ShaderPreview = __webpack_require__(/*! ./ShaderPreview */ 211);
+	
+	var _ShaderPreview2 = _interopRequireDefault(_ShaderPreview);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	var ShaderList = function ShaderList(_ref) {
+	  var shaders = _ref.shaders,
+	      onShaderClick = _ref.onShaderClick;
+	  return _react2.default.createElement(
+	    'div',
+	    { className: 'ShaderList' },
+	    Object.keys(shaders).map(function (shaderId) {
+	      return _react2.default.createElement(_ShaderPreview2.default, _extends({
+	        key: shaderId,
+	        onClick: onShaderClick
+	      }, shaders[shaderId]));
+	    })
+	  );
+	};
+	
+	ShaderList.propTypes = {
+	  shaders: _react2.default.PropTypes.object,
+	  onShaderClick: _react2.default.PropTypes.func.isRequired
+	};
+	
+	exports.default = ShaderList;
+
+/***/ },
+/* 211 */
+/*!*****************************************!*\
+  !*** ./src/components/ShaderPreview.js ***!
+  \*****************************************/
+/***/ function(module, exports, __webpack_require__) {
+
+	"use strict";
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+	
+	var _react = __webpack_require__(/*! react */ 1);
+	
+	var _react2 = _interopRequireDefault(_react);
+	
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+	
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+	
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+	
+	var ShaderPreview = function (_Component) {
+	  _inherits(ShaderPreview, _Component);
+	
+	  function ShaderPreview() {
+	    var _ref;
+	
+	    var _temp, _this, _ret;
+	
+	    _classCallCheck(this, ShaderPreview);
+	
+	    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+	      args[_key] = arguments[_key];
+	    }
+	
+	    return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = ShaderPreview.__proto__ || Object.getPrototypeOf(ShaderPreview)).call.apply(_ref, [this].concat(args))), _this), _this.handleClick = function () {
+	      _this.props.onClick(_this.props.id);
+	    }, _temp), _possibleConstructorReturn(_this, _ret);
+	  }
+	
+	  _createClass(ShaderPreview, [{
+	    key: "render",
+	    value: function render() {
+	      return _react2.default.createElement(
+	        "div",
+	        { className: "link Shader", onClick: this.handleClick },
+	        _react2.default.createElement(
+	          "div",
+	          { className: "shader-name" },
+	          this.props.shaderName
+	        ),
+	        _react2.default.createElement(
+	          "div",
+	          { className: "shader-info" },
+	          this.props.shaderInfo
+	        )
+	      );
+	    }
+	  }]);
+	
+	  return ShaderPreview;
+	}(_react.Component);
+	
+	ShaderPreview.propTypes = {
+	  id: _react2.default.PropTypes.number.isRequired,
+	  shaderName: _react2.default.PropTypes.string.isRequired,
+	  shaderInfo: _react2.default.PropTypes.string.isRequired,
+	  onClick: _react2.default.PropTypes.func.isRequired
+	};
+	
+	exports.default = ShaderPreview;
 
 /***/ }
 /******/ ]);

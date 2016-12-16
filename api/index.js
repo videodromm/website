@@ -1,23 +1,23 @@
 import express from 'express';
-import data from '../src/data/uniforms';
+import data from '../src/data/shaders';
 
 const router = express.Router();
-const uniforms = data.uniforms.reduce((obj, uniform) => {
-  obj[uniform.id] = uniform;
+const shaders = data.shaders.reduce((obj, shader) => {
+  obj[shader.id] = shader;
   return obj;
 }, {});
 
-router.get('/uniforms', (req, res) => {
+router.get('/shaders', (req, res) => {
   // convert array to object
   res.send({
-    uniforms: uniforms
+    shaders: shaders
   });
 });
 
-router.get('/uniforms/:uniformId', (req, res) => {
-  let uniform = uniforms[req.params.uniformId];
-  uniform.description = 'yo';
-  res.send(uniform);
+router.get('/shaders/:shaderId', (req, res) => {
+  let shader = shaders[req.params.shaderId];
+  shader.description = 'yo';
+  res.send(shader);
 });
 
 export default router;

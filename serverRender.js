@@ -6,32 +6,32 @@ import App from './src/components/App';
 import config from './config';
 import axios from 'axios';
 
-const getApiUrl = uniformId => {
-  if (uniformId) {
-    return `${config.serverUrl}/api/uniforms/${uniformId}`;
+const getApiUrl = shaderId => {
+  if (shaderId) {
+    return `${config.serverUrl}/api/shaders/${shaderId}`;
   }
-  return `${config.serverUrl}/api/uniforms`;
+  return `${config.serverUrl}/api/shaders`;
 };
 
-const getInitialData = (uniformId, apiData) => {
-  if (uniformId) {
+const getInitialData = (shaderId, apiData) => {
+  if (shaderId) {
     return {
-      currentUniformId: apiData.id,
-      uniforms: {
+      currentShaderId: apiData.id,
+      shaders: {
         [apiData.id]: apiData
       }
     };
   }
   return {
-    uniforms: apiData.uniforms
+    shaders: apiData.shaders
   };
 };
 
 // fetch data from the api
-const serverRender = (uniformId) =>
-  axios.get(getApiUrl(uniformId))
+const serverRender = (shaderId) =>
+  axios.get(getApiUrl(shaderId))
     .then(resp => {
-      const initialData = getInitialData(uniformId, resp.data);
+      const initialData = getInitialData(shaderId, resp.data);
       return {
         initialMarkup: ReactDOMServer.renderToString(
           <App initialData={initialData} />

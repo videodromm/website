@@ -1,6 +1,6 @@
-.Uniform {
+.Shader {
   border: 1px solid #ccc; }
-  .Uniform .uniform-name {
+  .Shader .shader-name {
     font-weight: bold; }
 
 .link {

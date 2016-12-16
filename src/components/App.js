@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from './Header';
-import UniformList from './UniformList';
-import Uniform from './Uniform';
+import ShaderList from './ShaderList';
+import Shader from './Shader';
 import * as api from '../api';
 
 const pushState = (obj, url) =>
@@ -19,61 +19,61 @@ class App extends React.Component {
   componentDidMount() {
     onPopState((event) => {
       this.setState({
-        currentUniformId: (event.state || {}).currentUniformId
+        currentShaderId: (event.state || {}).currentShaderId
       });
     });
   }
   componentWillUnmount() {
     onPopState(null);
   }
-  fetchUniform = (uniformId) => {
+  fetchShader = (shaderId) => {
     pushState(
-      { currentUniform: uniformId },
-      `/uniform/${uniformId}`
+      { currentShader: shaderId },
+      `/shader/${shaderId}`
     );
-    api.fetchUniform(uniformId).then(uniform => {
+    api.fetchShader(shaderId).then(shader => {
       // now the array is reduced as an object we can lookup by id
       this.setState({
-        currentUniformId: uniform.id,
-        uniforms: {
-          ...this.state.uniforms,
-          [uniform.id]:uniform
+        currentShaderId: shader.id,
+        shaders: {
+          ...this.state.shaders,
+          [shader.id]:shader
         }
       });
     }); 
   }
-  fetchUniformList = () => {
+  fetchShaderList = () => {
     pushState(
-      { currentUniform: null },
+      { currentShader: null },
       `/`
     );
-    api.fetchUniformList().then(uniforms => {
+    api.fetchShaderList().then(shaders => {
       // now the array is reduced as an object we can lookup by id
       this.setState({
-        currentUniformId: null,
-        uniforms
+        currentShaderId: null,
+        shaders
       });
     }); 
   }
 
-  currentUniform() {
-    return this.state.uniforms[this.state.currentUniformId];
+  currentShader() {
+    return this.state.shaders[this.state.currentShaderId];
   }
   pageHeader() {
-    if (this.state.currentUniformId) {
-      return this.currentUniform().uniformName;
+    if (this.state.currentShaderId) {
+      return this.currentShader().shaderName;
     }
     return 'Titre';
   }
   currentContent() {
-    if (this.state.currentUniformId) {
-      return <Uniform 
-              uniformListClick={this.fetchUniformList}
-              {...this.currentUniform} />;
+    if (this.state.currentShaderId) {
+      return <Shader 
+              shaderListClick={this.fetchShaderList}
+              {...this.currentShader} />;
     }
-    return <UniformList 
-          onUniformClick={this.fetchUniform}
-          uniforms={this.state.uniforms} />;
+    return <ShaderList 
+          onShaderClick={this.fetchShader}
+          shaders={this.state.shaders} />;
   };
   render() {
     return (

@@ -1,0 +1,22 @@
+{
+  "shaders": [
+    {
+        "id": 12,
+        "shaderName": "iZoom",
+        "shaderInfo": "zoom level",
+        "shaderValue": -2.5,
+        "shaderMinValue": -3.0,
+        "shaderMaxValue": 3.0,
+        "defaultValue": 1.0
+    },
+    {
+        "id": 14,
+        "shaderName": "iExposure",
+        "shaderInfo": "exposure",
+        "shaderValue": 1.5,
+        "shaderMinValue": 0.0,
+        "shaderMaxValue": 3.0,
+       "defaultValue": 1.0
+    }
+  ]
+}
