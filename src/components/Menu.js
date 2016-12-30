@@ -6,6 +6,7 @@ import GithubIcon from 'react-icons/lib/go/mark-github'
 import EyeIcon from 'react-icons/lib/go/eye'
 import KeyboardIcon from 'react-icons/lib/fa/keyboard-o'
 import LynxIcon from 'react-icons/lib/go/link-external'
+import SignupIcon from 'react-icons/lib/fa/sign-in'
 
 export const Menu = () => 
 	<nav className="menu">
@@ -29,5 +30,8 @@ export const Menu = () =>
 		</Link>
 		<Link to="/links" activeClassName="selected">
 			<LynxIcon />
+		</Link>
+		<Link to="/signup" activeClassName="selected">
+			<SignupIcon />
 		</Link>
 	</nav>
