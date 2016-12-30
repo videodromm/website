@@ -10,10 +10,10 @@ export class App extends Component {
 		this.state = {
 			allShaders: [
 			{
-				resort: "Squaw Valley",
+				shader: "HexlerEye",
 				date: "2016-01-02",
-				powder: true,
-				backcountry: false
+				valid: true,
+				active: false
 			}
 		]
 		}
@@ -41,11 +41,11 @@ export class App extends Component {
 			<Menu />
 			{(this.props.location.pathname === "/") ?
 			  <ShaderCount total={this.countShaders()}
-							 powder={this.countShaders(
-							 		"powder"
+							 valid={this.countShaders(
+							 		"valid"
 							 	)}
-							 backcountry={this.countShaders(
-							 		"backcountry"
+							 active={this.countShaders(
+							 		"active"
 							 	)}/> :
 			 (this.props.location.pathname === "/add-shader") ?
 			 	<AddShaderForm onNewShader={this.addShader}/> :

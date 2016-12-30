@@ -1,21 +1,30 @@
 @import "globals";
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,700,800|Roboto+Slab:400,100,300,700);
+
+/**  Basic Page CSS **/
 
 html,
 body,
 div#react-container,
 div.app {
   height: 100%;
-  padding: 0;
+  padding: 15px 0;
   margin: 0;
+  font-family: "Roboto Slab", sans-serif;
+  font-weight: 300;
+  font-size: 2em;
+  position: relative;
+  background-color: #000;
+  color: orange;
+  font-size: 16px;
 }
 
 h1, label {
   margin: 0
 }
 
-
 div.Error-404 {
-  background-color: white;
+  background-color: black;
   font-size: 2em;
   display: flex;
   justify-content: center;

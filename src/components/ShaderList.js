@@ -7,7 +7,7 @@ import { Link } from 'react-router'
 
 export const ShaderList = ({shaders, filter}) => {
   const filteredShaders = (!filter || 
-  		!filter.match(/powder|backcountry/))?
+  		!filter.match(/valid|active/))?
   		shaders:
   		shaders.filter(shader => shader[filter])
 
@@ -18,19 +18,19 @@ export const ShaderList = ({shaders, filter}) => {
 			<tr>
 				<th>Date</th>
 				<th>Resort</th>
-				<th>Powder</th>
-				<th>Backcountry</th>
+				<th>valid</th>
+				<th>active</th>
 			</tr>
 			<tr>
 				<td colSpan={4}>
 					<Link to="/list-shaders">
 						All Shaders
 					</Link>
-					<Link to="/list-shaders/powder">
-						Powder Shaders
+					<Link to="/list-shaders/valid">
+						valid Shaders
 					</Link>
-					<Link to="/list-shaders/backcountry">
-						Backcountry Shaders
+					<Link to="/list-shaders/active">
+						active Shaders
 					</Link>
 				</td>
 			</tr>

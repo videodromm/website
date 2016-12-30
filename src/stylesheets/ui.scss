@@ -1,18 +1,18 @@
 @import "globals";
 
 nav.menu {
-  background-color: black;
+  background-color: $purple-rain;
   position: fixed;
-  bottom: 0;
+  top: 0;
   left: 0;
   width: calc(100% - 1em);
-  font-size: 4em;
-  padding: .5em;
+  font-size: 2em;
+  padding: .15em;
   display: flex;
   justify-content: space-around;
 
   a {
-    color: $purple-rain;
+    color: yellow;
   }
 }
 
@@ -33,7 +33,7 @@ div.show-errors {
     text-align: center;
     top: 0;
     background-color: red;
-    color: white;
+    color: black;
     font-family: verdana, sans-serif;
     display: flex;
     justify-content: space-between;
@@ -70,8 +70,7 @@ form.add-shader-form {
     font-weight: bold;
   }
 
-  input[type="text"],
-  input[type="date"] {
+  input[type="text"] {
     font-size: 1.5em;
     padding: .25em;
     border-radius: .2em;
@@ -111,7 +110,7 @@ form.add-shader-form {
       width: auto;
       height: auto;
       max-height: 200px;
-      background-color: white;
+      background-color: yellow;
       overflow-y: scroll;
       z-index: 3;
 
@@ -136,9 +135,9 @@ form.add-shader-form {
     margin: auto;
     width: 100%;
     font-size: 2em;
-    background-color: #8a2a2d;
+    background-color: $purple-rain;
     font-weight: bold;
-    color: $purple-rain;
+    color: yellow;
     padding: 5px;
   }
 

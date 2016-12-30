@@ -12,21 +12,21 @@ const calcGoalProgress = (total, goal) => {
 	return percentToDecimal(total/goal)
 }
 
-export const ShaderCount = ({total=70, powder=20, 
-							backcountry=10, goal=100}) => (
+export const ShaderCount = ({total=70, valid=20, 
+							active=10, goal=100}) => (
 		<div className="ski-shader-count">
 			<div className="total-shaders">
 				<span>{total}</span>
 					<Calendar />
 				<span>shaders</span>
 			</div>
-			<div className="powder-shaders">
-				<span>{powder}</span>
+			<div className="valid-shaders">
+				<span>{valid}</span>
 					<SnowFlake />
 				<span>shaders</span>
 			</div>
-			<div className="backcountry-shaders">
-				<span>{backcountry}</span>
+			<div className="active-shaders">
+				<span>{active}</span>
 					<Terrain />
 				<span>shaders</span>
 			</div>
@@ -43,8 +43,8 @@ export const ShaderCount = ({total=70, powder=20,
 
 ShaderCount.propTypes = {
   total: PropTypes.number,
-  powder: PropTypes.number,
-  backcountry: PropTypes.number,
+  valid: PropTypes.number,
+  active: PropTypes.number,
   goal: PropTypes.number
 }
 

@@ -1,36 +1,27 @@
 import { PropTypes, Component } from 'react'
 
-const tahoeResorts = [
-	"Alpine Meadows",
-	"Boreal",
-	"Diamond Peak",
-	"Donner Ski Ranch", 
-	"Heavenly", 
-	"Homewood",
-	"Kirkwood",
-	"Mt. Rose", 
-	"Northstar",
-	"Squaw Valley",
-	"Sugar Bowl"
+const Shaders = [
+	"AudioReaktive",
+	"AnyArrayIndex"
 ]
 
 class Autocomplete extends Component {
 	
 	get value() {
-		return this.refs.inputResort.value
+		return this.refs.inputShader.value
 	}
 
 	set value(inputValue) {
-		this.refs.inputResort.value = inputValue
+		this.refs.inputShader.value = inputValue
 	}
 
 	render() {
 		return (
 			<div>
-				<input ref="inputResort"
+				<input ref="inputShader"
 					   type="text" 
-					   list="tahoe-resorts" />
-				<datalist id="tahoe-resorts">
+					   list="shada" />
+				<datalist id="shada">
 					{this.props.options.map(
 						(opt, i) => 
 						<option key={i}>{opt}</option>)}
@@ -42,35 +33,35 @@ class Autocomplete extends Component {
 
 
 
-export const AddShaderForm = ({ resort, 
+export const AddShaderForm = ({ shader, 
 							 date, 
-							 powder, 
-							 backcountry,
+							 valid, 
+							 active,
 							 onNewShader }) => {
 	
-	let _resort, _date, _powder, _backcountry
+	let _shader, _date, _valid, _active
 	
 	const submit = (e) => {
 		e.preventDefault()
 		onNewShader({
-			resort: _resort.value,
+			shader: _shader.value,
 			date: _date.value,
-			powder: _powder.checked,
-			backcountry: _backcountry.checked
+			valid: _valid.checked,
+			active: _active.checked
 		})
-		_resort.value = ''
+		_shader.value = ''
 		_date.value = ''
-		_powder.checked = false
-		_backcountry.checked = false
+		_valid.checked = false
+		_active.checked = false
 
 	}
 
 	return (
 		<form onSubmit={submit} className="add-shader-form">
 
-			<label htmlFor="resort">Resort Name</label>
-			<Autocomplete options={tahoeResorts}
-				   		  ref={input => _resort = input}/>
+			<label htmlFor="shader">Shader Name</label>
+			<Autocomplete options={Shaders}
+				   		  ref={input => _shader = input}/>
 
 			<label htmlFor="date">Date</label>
 			<input id="date" 
@@ -80,22 +71,22 @@ export const AddShaderForm = ({ resort,
 				   ref={input => _date = input}/>
 
 			<div>
-				<input id="powder" 
+				<input id="valid" 
 					   type="checkbox" 
-					   defaultChecked={powder}	
-					   ref="powder"
-					   ref={input => _powder = input}/>
-				<label htmlFor="powder">Powder Shader</label>
+					   defaultChecked={valid}	
+					   ref="valid"
+					   ref={input => _valid = input}/>
+				<label htmlFor="valid">valid Shader</label>
 			</div>
 
 			<div>	
-				<input id="backcountry" 
+				<input id="active" 
 					   type="checkbox"
-					   defaultChecked={backcountry} 
-					   ref="backcountry"
-					   ref={input => _backcountry = input}/>
-				<label htmlFor="backcountry">
-					Backcountry Shader
+					   defaultChecked={active} 
+					   ref="active"
+					   ref={input => _active = input}/>
+				<label htmlFor="active">
+					active Shader
 				</label>
 			</div>
 			<button>Add Shader</button>
@@ -104,16 +95,16 @@ export const AddShaderForm = ({ resort,
 }
 
 AddShaderForm.defaultProps = {
-	resort: "Kirkwood",
+	shader: "Kirkwood",
 	date: "2017-02-12",
-	powder: true,
-	backcountry: false
+	valid: true,
+	active: false
 }
 
 
 AddShaderForm.propTypes = {
-	resort: PropTypes.string.isRequired,
+	shader: PropTypes.string.isRequired,
 	date: PropTypes.string.isRequired,
-	powder: PropTypes.bool.isRequired,
-	backcountry: PropTypes.bool.isRequired
+	valid: PropTypes.bool.isRequired,
+	active: PropTypes.bool.isRequired
 }
