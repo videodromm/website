@@ -1,48 +1,47 @@
-/*var debug = process.env.NODE_ENV !== "production";
-var webpack = require('webpack');
-var path = require('path');*/
+var webpack = require("webpack");
 
 module.exports = {
-  entry: './src/index.js',
-  output: {
-    path: __dirname + '/public',
-    filename: 'bundle.js'
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
-      {
-        test: /\.js$/,
-        loader: 'babel-loader'
-      }
-    ]
-  }
-};
+	entry: "./src/index.js",
+	output: {
+		path: "public/assets",
+		filename: "bundle.js",
+		publicPath: "assets"
+	},
+	devServer: {
+		inline: true,
+		contentBase: './public',
+		port: 3030
+	},
+	module: {
+		loaders: [
+			{
+				test: /\.js$/,
+				exclude: /(node_modules)/,
+				loader: ["babel-loader"],
+				query: {
+					presets: ["latest", "stage-0", "react"]
+				}
+			},
+			{
+				test: /\.json$/,
+				exclude: /(node_modules)/,
+				loader: "json-loader"
+			},
+			{
+				test: /\.css$/,
+				loader: 'style-loader!css-loader!autoprefixer-loader'
+			},
+			{
+				test: /\.scss$/,
+				loader: 'style-loader!css-loader!autoprefixer-loader!sass-loader'
+			}
+		]
+	}
+}
 
-/* seems not to work
-module.exports = {
-  entry: './src/index.js',
-  devtool: debug ? "inline-sourcemap" : null,
-  output: {
-    path: __dirname + 'public',
-    filename: 'bundle.js'
-  },
-  module: {
-    loaders: [
-      {
-        test: /\.js$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader'
-      },
-      { test: /\.css$/, loader: "style-loader!css-loader" },
-    ]
-  },
-  plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-  ],
-};*/
+
+
+
+
+
+

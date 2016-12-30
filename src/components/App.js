@@ -1,88 +1,63 @@
-import React from 'react';
-import Header from './Header';
-import ShaderList from './ShaderList';
-import Shader from './Shader';
-import * as api from '../api';
+import { Component } from 'react'
+import { ShaderList } from './ShaderList'
+import { ShaderCount } from './ShaderCount'
+import { AddShaderForm } from './AddShaderForm'
+import { Menu } from './Menu'
 
-const pushState = (obj, url) =>
-  window.history.pushState(obj, '', url);
+export class App extends Component {
+	constructor(props) {
+		super(props)
+		this.state = {
+			allShaders: [
+			{
+				resort: "Squaw Valley",
+				date: "2016-01-02",
+				powder: true,
+				backcountry: false
+			}
+		]
+		}
+		this.addShader = this.addShader.bind(this)
+	}
 
-const onPopState = handler => {
-  window.onpopstate = handler;
-};
+	addShader(newShader) {
+		this.setState({
+			allShaders: [
+				...this.state.allShaders,
+				newShader
+			]
+		})
+	}
 
-class App extends React.Component {
-  static propTypes = {
-    initialData: React.PropTypes.object.isRequired
-  };
-  state = this.props.initialData;
-  componentDidMount() {
-    onPopState((event) => {
-      this.setState({
-        currentShaderId: (event.state || {}).currentShaderId
-      });
-    });
-  }
-  componentWillUnmount() {
-    onPopState(null);
-  }
-  fetchShader = (shaderId) => {
-    pushState(
-      { currentShader: shaderId },
-      `/shader/${shaderId}`
-    );
-    api.fetchShader(shaderId).then(shader => {
-      // now the array is reduced as an object we can lookup by id
-      this.setState({
-        currentShaderId: shader.id,
-        shaders: {
-          ...this.state.shaders,
-          [shader.id]:shader
-        }
-      });
-    }); 
-  }
-  fetchShaderList = () => {
-    pushState(
-      { currentShader: null },
-      `/`
-    );
-    api.fetchShaderList().then(shaders => {
-      // now the array is reduced as an object we can lookup by id
-      this.setState({
-        currentShaderId: null,
-        shaders
-      });
-    }); 
-  }
+	countShaders(filter) {
+		const { allShaders } = this.state
+		return allShaders.filter(
+			(shader) => (filter) ? shader[filter] : shader).length
+	}
 
-  currentShader() {
-    return this.state.shaders[this.state.currentShaderId];
-  }
-  pageHeader() {
-    if (this.state.currentShaderId) {
-      return this.currentShader().shaderName;
-    }
-    return 'Titre';
-  }
-  currentContent() {
-    if (this.state.currentShaderId) {
-      return <Shader 
-              shaderListClick={this.fetchShaderList}
-              {...this.currentShader} />;
-    }
-    return <ShaderList 
-          onShaderClick={this.fetchShader}
-          shaders={this.state.shaders} />;
-  };
-  render() {
-    return (
-    <div className="App">
-        <Header message={this.pageHeader()} />
-        {this.currentContent()}
-    </div>
-    );
-  }
+	render() {
+		return (
+			<div className="app">
+			<Menu />
+			{(this.props.location.pathname === "/") ?
+			  <ShaderCount total={this.countShaders()}
+							 powder={this.countShaders(
+							 		"powder"
+							 	)}
+							 backcountry={this.countShaders(
+							 		"backcountry"
+							 	)}/> :
+			 (this.props.location.pathname === "/add-shader") ?
+			 	<AddShaderForm onNewShader={this.addShader}/> :
+			 	<ShaderList shaders={this.state.allShaders}
+			 				filter={this.props.params.filter}/>				 
+			}
+					
+			</div>
+		)
+	}
 }
 
-export default App;
+
+
+
