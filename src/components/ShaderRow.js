@@ -1,6 +1,5 @@
-import Terrain from 'react-icons/lib/md/terrain'
-import SnowFlake from 'react-icons/lib/ti/weather-snow'
-import Calendar from 'react-icons/lib/fa/calendar'
+import Valid from 'react-icons/lib/go/check'
+import Active from 'react-icons/lib/go/light-bulb'
 import { PropTypes } from 'react'
 
 export const ShaderRow = ({shader, date, 
@@ -13,10 +12,10 @@ export const ShaderRow = ({shader, date,
 			{shader}
 		</td>
 		<td>
-			{(valid) ? <SnowFlake/> : null}
+			{(valid) ? <Valid/> : null}
 		</td>
 		<td>
-			{(active) ? <Terrain /> : null}
+			{(active) ? <Active /> : null}
 		</td>
 	</tr>						
 

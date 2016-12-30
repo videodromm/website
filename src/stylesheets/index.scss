@@ -6,6 +6,7 @@
 html,
 body,
 div#react-container,
+div.cmp 
 div.app {
   height: 100%;
   padding: 15px 0;
@@ -15,7 +16,7 @@ div.app {
   font-size: 2em;
   position: relative;
   background-color: #000;
-  color: orange;
+  color: yellow;
   font-size: 16px;
 }
 

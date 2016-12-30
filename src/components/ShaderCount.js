@@ -1,42 +1,26 @@
 import '../stylesheets/ui.scss'
-import Terrain from 'react-icons/lib/md/terrain'
-import SnowFlake from 'react-icons/lib/ti/weather-snow'
-import Calendar from 'react-icons/lib/fa/calendar'
+import Total from 'react-icons/lib/go/dashboard'
+import Valid from 'react-icons/lib/go/check'
+import Active from 'react-icons/lib/go/light-bulb'
 import { PropTypes } from 'react'
 
-const percentToDecimal = (decimal) => {
-	return ((decimal * 100) + '%')
-}
-
-const calcGoalProgress = (total, goal) => {
-	return percentToDecimal(total/goal)
-}
-
-export const ShaderCount = ({total=70, valid=20, 
-							active=10, goal=100}) => (
-		<div className="ski-shader-count">
+export const ShaderCount = ({total=0, valid=0, 
+							active=0}) => (
+		<div className="shader-count">
 			<div className="total-shaders">
 				<span>{total}</span>
-					<Calendar />
+					<Total />
 				<span>shaders</span>
 			</div>
 			<div className="valid-shaders">
 				<span>{valid}</span>
-					<SnowFlake />
+					<Valid />
 				<span>shaders</span>
 			</div>
 			<div className="active-shaders">
 				<span>{active}</span>
-					<Terrain />
+					<Active />
 				<span>shaders</span>
-			</div>
-			<div>
-				<span>
-					{calcGoalProgress(
-						total, 
-						goal
-					)}
-				</span>
 			</div>
 		</div>
 )

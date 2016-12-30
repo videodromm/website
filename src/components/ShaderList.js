@@ -1,6 +1,3 @@
-import Terrain from 'react-icons/lib/md/terrain'
-import SnowFlake from 'react-icons/lib/ti/weather-snow'
-import Calendar from 'react-icons/lib/fa/calendar'
 import { ShaderRow } from './ShaderRow'
 import { PropTypes } from 'react'
 import { Link } from 'react-router'
@@ -12,14 +9,14 @@ export const ShaderList = ({shaders, filter}) => {
   		shaders.filter(shader => shader[filter])
 
   return (
-  	<div className="ski-shader-list">
+  	<div className="shader-list">
 	<table>
 		<thead>
 			<tr>
 				<th>Date</th>
-				<th>Resort</th>
-				<th>valid</th>
-				<th>active</th>
+				<th>Name</th>
+				<th>Valid</th>
+				<th>Active</th>
 			</tr>
 			<tr>
 				<td colSpan={4}>
@@ -27,10 +24,10 @@ export const ShaderList = ({shaders, filter}) => {
 						All Shaders
 					</Link>
 					<Link to="/list-shaders/valid">
-						valid Shaders
+						Valid Shaders
 					</Link>
 					<Link to="/list-shaders/active">
-						active Shaders
+						Active Shaders
 					</Link>
 				</td>
 			</tr>

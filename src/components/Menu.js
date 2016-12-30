@@ -1,10 +1,11 @@
 import { Link } from 'react-router'
 import HomeIcon from 'react-icons/lib/fa/home'
-import AddShaderIcon from 'react-icons/lib/fa/calendar-plus-o'
+import AddShaderIcon from 'react-icons/lib/go/diff-added'
 import ListShadersIcon from 'react-icons/lib/fa/table'
 import GithubIcon from 'react-icons/lib/go/mark-github'
 import EyeIcon from 'react-icons/lib/go/eye'
 import KeyboardIcon from 'react-icons/lib/fa/keyboard-o'
+import LynxIcon from 'react-icons/lib/go/link-external'
 
 export const Menu = () => 
 	<nav className="menu">
@@ -25,5 +26,8 @@ export const Menu = () =>
 		</Link>
 		<Link to="/glsleditor" activeClassName="selected">
 			<KeyboardIcon />
+		</Link>
+		<Link to="/links" activeClassName="selected">
+			<LynxIcon />
 		</Link>
 	</nav>

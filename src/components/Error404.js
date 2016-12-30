@@ -1,4 +1,7 @@
+import { Menu } from './Menu'
+
 export const Error404 = () => 
-	<div>
+	<div className="component">
+		<Menu />
 		<h1>Error, route not found</h1>
 	</div>

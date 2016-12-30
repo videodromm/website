@@ -13,7 +13,7 @@ export class App extends Component {
 				shader: "HexlerEye",
 				date: "2016-01-02",
 				valid: true,
-				active: false
+				active: true
 			}
 		]
 		}

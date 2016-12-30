@@ -76,7 +76,7 @@ export const AddShaderForm = ({ shader,
 					   defaultChecked={valid}	
 					   ref="valid"
 					   ref={input => _valid = input}/>
-				<label htmlFor="valid">valid Shader</label>
+				<label htmlFor="valid">Valid Shader</label>
 			</div>
 
 			<div>	
@@ -86,7 +86,7 @@ export const AddShaderForm = ({ shader,
 					   ref="active"
 					   ref={input => _active = input}/>
 				<label htmlFor="active">
-					active Shader
+					Active Shader
 				</label>
 			</div>
 			<button>Add Shader</button>
