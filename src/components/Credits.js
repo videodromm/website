@@ -1,6 +1,6 @@
 import { Menu } from './Menu'
 
-export const Github = () => 
+export const Credits = () => 
   <div className="component">
 		<Menu />
     <ul>
