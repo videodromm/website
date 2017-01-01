@@ -17,8 +17,12 @@ Open tab to http://localhost:3030
 
 Shader text is sent to all websocket clients when edited
 
+#Credits
 Shader editor:
-# [GlslEditor] https://github.com/patriciogonzalezvivo/glslEditor 
+[GlslEditor] https://github.com/patriciogonzalezvivo/glslEditor 
 
-Another one:
-# [The_Force] https://github.com/shawnlawson/The_Force/
+Another shader editor:
+[The_Force] https://github.com/shawnlawson/The_Force/
+ 
+Excellent react/nodejs courses on https://www.linkedin.com/learning/
+[Eve Porcello and Alex Banks] http://www.moonhighway.com/ for their 

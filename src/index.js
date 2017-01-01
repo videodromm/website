@@ -11,6 +11,7 @@ import SignupPage from './components/signup/SignupPage';
 import { Warps } from './components/Warps'
 import { Github } from './components/Github'
 import { Links } from './components/Links'
+import { Credits } from './components/Credits'
 import { Error404 } from './components/Error404'
 import rootReducer from './rootReducer';
 
@@ -34,6 +35,7 @@ render(
 		<Route path="github" component={Github} />
 		<Route path="warps" component={Warps} />
 		<Route path="links" component={Links} />
+		<Route path="credits" component={Credits} />
 		<Route path="signup" component={SignupPage} />
 		<Route path="*" component={Error404}/>
 	</Router>
