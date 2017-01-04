@@ -10,10 +10,22 @@ export class Controller extends Component{
 				uniformValue: 1.0,
 				uniformInfo: "iZoom", 
         widget: "dial",
-        uniformMinValue: 0.0, 
-        uniformMaxValue: 1.0
+       defaultValue: 1.0,
+        uniformMinValue: -3.0, 
+        uniformMaxValue: 3.0
 			},
-      index:0
+      index:0,
+      uniforms: [
+        {
+				uniformName: "iExposure",
+				uniformValue: 1.1,
+				uniformInfo: "iExposure", 
+        widget: "dial",
+       defaultValue: 1.0,
+        uniformMinValue: 0.0, 
+        uniformMaxValue: 3.0
+			}
+      ]
 		}
 		this.changeUniform = this.changeUniform.bind(this)
 		this.resetUniform = this.resetUniform.bind(this)
@@ -39,11 +51,11 @@ export class Controller extends Component{
         window.socket.emit('params', '{"params" :[{"name" : 12,"value" :'+data.value+"}]}");
         //ws.send('{"params" :[{"name" : 12,"value" :'+data.value+"}]}");
        });
-       /*iExposure.on('*', function(data){
+       iExposure.on('*', function(data){
          console.log('iExposure'+ ws + ' val:' + data.value);
          //ws.send('{"params" :[{"name" : 14,"value" :'+data.value+"}]}");
        });
-       iRedMultiplier.on('*', function(data){
+       /*iRedMultiplier.on('*', function(data){
          console.log('iRedMultiplier'+ ws + ' val:' + data.value);
          //ws.send('{"params" :[{"name" : 5,"value" :'+data.value+"}]}");
        });
@@ -91,9 +103,20 @@ export class Controller extends Component{
 	} //changeUniform
 
   render() {
+    var filteredUniforms = this.state.uniforms;
+    filteredUniforms = filteredUniforms.map(function(item, index) {
+      return (
+        <UniformList key = {index}
+          singleItem = {item}
+          whichUniform = {item}
+          onChange = {this.changeUniform}
+          onReset = {this.resetUniform} />
+      ) //return
+    }.bind(this)); //filteredUniforms.map
 		return (
       <div className="interface">
         <Menu />
+        <ul className="item-list media-list">{filteredUniforms}</ul>
         <UniformList key = {this.state.index}
           singleItem = {this.state.item}
           whichUniform = {this.state.item}
