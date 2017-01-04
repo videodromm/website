@@ -8,6 +8,7 @@ import {Provider} from 'react-redux';
 import thunk from 'redux-thunk';
 import {createStore, applyMiddleware, compose} from 'redux';
 import SignupPage from './components/signup/SignupPage';
+import { Controller } from './components/Controller'
 import { Warps } from './components/Warps'
 import { Github } from './components/Github'
 import { Links } from './components/Links'
@@ -31,6 +32,7 @@ render(
 		<Route path="list-shaders" component={App}>
 			<Route path=":filter" component={App} />
 		</Route>
+		<Route path="controller" component={Controller} />
 		<Route path="add-shader" component={App} />
 		<Route path="github" component={Github} />
 		<Route path="warps" component={Warps} />

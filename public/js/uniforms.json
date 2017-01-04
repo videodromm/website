@@ -1,0 +1,47 @@
+[
+    {
+        "uniformName": "iZoom",
+        "uniformInfo": "zoom",
+        "uniformValue": -2.5,
+        "uniformMinValue": -3.0,
+        "uniformMaxValue": 3.0,
+        "defaultValue": 1.0,
+        "widget": "dial"
+    },
+    {
+        "uniformName": "iExposure",
+        "uniformInfo": "expo",
+        "uniformValue": 1.5,
+        "uniformMinValue": 0.0,
+        "uniformMaxValue": 3.0,
+       "defaultValue": 1.0,
+        "widget": "dial"
+    },
+    {
+        "uniformName": "iRedMultiplier",
+        "uniformInfo": "red x",
+        "uniformValue": 1.0,
+        "uniformMinValue": 0.0,
+        "uniformMaxValue": 3.0,
+       "defaultValue": 1.0,
+        "widget": "slider"
+    },
+    {
+        "uniformName": "iGreenMultiplier",
+        "uniformInfo": "green x",
+        "uniformValue": 1.0,
+        "uniformMinValue": 0.0,
+        "uniformMaxValue": 3.0,
+       "defaultValue": 1.0,
+        "widget": "slider"
+    },
+    {
+        "uniformName": "iBlueMultiplier",
+        "uniformInfo": "blue x",
+        "uniformValue": 1.0,
+        "uniformMinValue": 0.0,
+        "uniformMaxValue": 3.0,
+       "defaultValue": 1.0,
+        "widget": "slider"
+    }
+]
