@@ -1,5 +1,6 @@
 import { Link } from 'react-router'
 import HomeIcon from 'react-icons/lib/fa/home'
+import ControllerIcon from 'react-icons/lib/md/album'
 import AddShaderIcon from 'react-icons/lib/go/diff-added'
 import ListShadersIcon from 'react-icons/lib/fa/table'
 import GithubIcon from 'react-icons/lib/go/mark-github'
@@ -7,13 +8,16 @@ import EyeIcon from 'react-icons/lib/go/eye'
 import KeyboardIcon from 'react-icons/lib/fa/keyboard-o'
 import LynxIcon from 'react-icons/lib/go/link-external'
 import SignupIcon from 'react-icons/lib/fa/sign-in'
-import WarpIcon from 'react-icons/lib/ti/arrow-move-outline'
+import WarpIcon from 'react-icons/lib/fa/object-ungroup'
 import CreditsIcon from 'react-icons/lib/ti/group-outline'
 
 export const Menu = () => 
 	<nav className="menu">
 		<Link to="/" activeClassName="selected">
 			<HomeIcon />
+		</Link>
+		<Link to="/controller" activeClassName="selected">
+			<ControllerIcon />
 		</Link>
 		<Link to="/add-shader" activeClassName="selected">
 			<AddShaderIcon />
