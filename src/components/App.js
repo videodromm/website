@@ -10,30 +10,27 @@ export class App extends Component {
 	constructor(props) {
 		super(props)
 		this.state = {
-			allShaders: [
-			{
-				shader: "HexlerEye",
-				date: "2016-01-02",
-				valid: true,
-				active: true
-			}
-		]
+			shaders: []
 		}
 		this.addShader = this.addShader.bind(this)
 	}
-
+	componentDidMount() {
+		this.setState({
+			shaders: data.shaders
+		})
+	}
 	addShader(newShader) {
 		this.setState({
-			allShaders: [
-				...this.state.allShaders,
+			shaders: [
+				...this.state.shaders,
 				newShader
 			]
 		})
 	}
 
 	countShaders(filter) {
-		const { allShaders } = this.state
-		return allShaders.filter(
+		const { shaders } = this.state
+		return shaders.filter(
 			(shader) => (filter) ? shader[filter] : shader).length
 	}
 
@@ -51,7 +48,7 @@ export class App extends Component {
 							 	)}/> :
 			 (this.props.location.pathname === "/add-shader") ?
 			 	<AddShaderForm onNewShader={this.addShader}/> :
-			 	<ShaderList shaders={data.shaders}
+			 	<ShaderList shaders={this.state.shaders}
 			 				filter={this.props.params.filter}/>				 
 			}
 					
