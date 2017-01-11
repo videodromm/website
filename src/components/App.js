@@ -3,6 +3,8 @@ import { ShaderList } from './ShaderList'
 import { ShaderCount } from './ShaderCount'
 import { AddShaderForm } from './AddShaderForm'
 import { Menu } from './Menu'
+import data from '../shaders.json'
+console.log(data)
 
 export class App extends Component {
 	constructor(props) {
@@ -49,7 +51,7 @@ export class App extends Component {
 							 	)}/> :
 			 (this.props.location.pathname === "/add-shader") ?
 			 	<AddShaderForm onNewShader={this.addShader}/> :
-			 	<ShaderList shaders={this.state.allShaders}
+			 	<ShaderList shaders={data.shaders}
 			 				filter={this.props.params.filter}/>				 
 			}
 					

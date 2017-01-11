@@ -1,0 +1,20 @@
+{
+  "shaders": [
+			{
+			"id": "45629616",
+			"shader": "HexlerVimeo",
+				"date": "2016-01-02",
+				"file": "hexler45629616.glsl",
+				"valid": true,
+				"active": true
+			},
+			{
+			"id": "4sfXRB",
+			"shader": "AcidAtTheDisco",
+				"date": "2017-01-11",
+				"file": "AcidAtTheDisco.glsl",
+				"valid": true,
+				"active": true
+			}
+		]
+}

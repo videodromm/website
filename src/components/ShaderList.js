@@ -15,6 +15,7 @@ export const ShaderList = ({shaders, filter}) => {
 			<tr>
 				<th>Date</th>
 				<th>Name</th>
+				<th>File</th>
 				<th>Valid</th>
 				<th>Active</th>
 			</tr>
@@ -33,8 +34,8 @@ export const ShaderList = ({shaders, filter}) => {
 			</tr>
 		</thead>
 		<tbody>
-			{filteredShaders.map((shader, i) =>
-				<ShaderRow key={i}
+			{filteredShaders.map((shader) =>
+				<ShaderRow key={shader.id}
 						   {...shader}/>	
 				)}
 		</tbody>
