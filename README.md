@@ -23,5 +23,3 @@ Shader editor:
 Another shader editor:
 [The_Force] https://github.com/shawnlawson/The_Force/
  
-Excellent react/nodejs courses from Eve Porcello and Alex Banks( http://www.moonhighway.com/ ) on https://www.linkedin.com/learning/
-  
