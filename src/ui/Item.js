@@ -7,24 +7,25 @@ import Slider from 'material-ui/Slider';
 import { purple900, deepPurple900 }  from 'material-ui/styles/colors';
 
 const styles = {
-    chip: {
-        margin: 4
-    },
-    wrapper: {
-        display: 'flex',
-        flexWrap: 'wrap',
+  chip: {
+    margin: 4
+  },
+  wrapper: {
+    display: 'flex',
+    flexWrap: 'wrap',
   },
 };
 
 export default class Item extends Component {
-    state = {
-        firstSlider: 0.5
-    };
-    handleFirstSlider = (event, value) => {
-        this.setState({firstSlider: value});
-    };
-	render() {
-		return (
+  state = {
+    firstSlider: 0.5
+  };
+  handleFirstSlider = (event, value) => {
+    this.setState({firstSlider: value});
+    window.socket.send('{"params" :[{"name" : 12,"value" :'+value+'}]}');
+  };
+  render() {
+    return (
             <Card>
                 <CardMedia overlay={<CardTitle title="work in progress" subtitle="come back later!"/>}>
                     <img src="./images/anim131.jpg" alt="batchass" />
@@ -55,6 +56,6 @@ export default class Item extends Component {
                     
                 </CardActions>               
             </Card>
-        );
-	}
+    );
+  }
 }
