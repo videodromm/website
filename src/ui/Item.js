@@ -18,12 +18,20 @@ const styles = {
 
 export default class Item extends Component {
   state = {
-    firstSlider: 0.5
+    firstSlider: 0.5,
+    items: [{name: 'item1', id: 1}, {name: 'item2', id: 2}, {name: 'item3', id: 3}]
   };
   handleFirstSlider = (event, value) => {
     this.setState({firstSlider: value});
     if (window.socket) window.socket.send('{"params" :[{"name" : 12,"value" :'+value+'}]}');
   };
+  addSlider(item, key) {
+    return (
+        <Slider axis="x" key={key}
+                            defaultValue={key/10}
+                            />
+    );
+  }
   render() {
     return (
             <Card>
@@ -41,15 +49,17 @@ export default class Item extends Component {
                         </Avatar>
                             videodromm
                         </Chip>
+                        <span>Zoom<br />{this.state.firstSlider}</span>
                         <Slider 
                             axis="y"
                             defaultValue={0.5}
                             value={this.state.firstSlider}
                             onChange={this.handleFirstSlider}
                         />
-                        <p>
-                        <span>{this.state.firstSlider}</span>
-                        </p>
+                        <div>
+                            {this.state.items.map( this.addSlider)}
+                        </div>
+                        
                     </div>
                 </CardText>
                 <CardActions>
