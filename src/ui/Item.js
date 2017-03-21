@@ -26,8 +26,8 @@ export default class Item extends Component {
 	render() {
 		return (
             <Card>
-                <CardMedia overlay={<CardTitle title="i" subtitle="s"/>}>
-                    <img src="./images/videodromm-logo.png" />
+                <CardMedia overlay={<CardTitle title="work in progress" subtitle="come back later!"/>}>
+                    <img src="./images/anim131.jpg" alt="batchass" />
                 </CardMedia>
                 <CardText>
                     <div style={styles.wrapper}>
@@ -36,12 +36,11 @@ export default class Item extends Component {
                             style={styles.chip}
                         >
                         <Avatar size={32} color={purple900} backgroundColor={deepPurple900}>
-                            2
+                            VD
                         </Avatar>
-                            Colored Chip
+                            videodromm
                         </Chip>
                         <Slider 
-
                             axis="y"
                             defaultValue={0.5}
                             value={this.state.firstSlider}
