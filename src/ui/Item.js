@@ -22,7 +22,7 @@ export default class Item extends Component {
   };
   handleFirstSlider = (event, value) => {
     this.setState({firstSlider: value});
-    window.socket.send('{"params" :[{"name" : 12,"value" :'+value+'}]}');
+    if (window.socket) window.socket.send('{"params" :[{"name" : 12,"value" :'+value+'}]}');
   };
   render() {
     return (
