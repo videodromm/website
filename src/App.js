@@ -6,24 +6,32 @@ import ItemList from './ui/ItemList';
 import Item from './ui/Item';
 
 class App extends Component {
-  state = {
-    wshost:'127.0.0.1',
-    wsport:8088
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+        wshost:'127.0.0.1',
+        wsport:8088
+    };
+    this.changeHost = this.changeHost.bind(this);
+    this.changePort = this.changePort.bind(this);
+  }
   submit = (e) => {
     e.preventDefault();
+    console.log('h:' + this.state.wshost + ' p:'+this.state.wsport);
     window.socket = new WebSocket('ws://' + this.state.wshost + ':' + this.state.wsport);
-  };
-  onClick() {
-    console.log('click');
-    window.socket = new WebSocket('ws://' + this.state.wshost + ':' + this.state.wsport);
-    window.socket.send('{"params" :[{"name" : 12,"value" :0.7}]}');
   }
-  changeHost(event, value) {
-    this.setState({wshost: value});
-  }
-  changePort(event, value) {
-    this.setState({wsport: value});
+  changeHost(e) {
+    console.log('h:'+this.state.wshost);
+    console.log('v:'+e.target.value);
+    this.setState({wshost: e.target.value});
+    console.log('h:'+this.state.wshost);
+ }
+  changePort(e) {
+    console.log('h:'+this.state.wsport);
+    console.log('v:'+e.target.value);
+    this.setState({wsport: e.target.value});
+    console.log('h:'+this.state.wsport);
   }
   
   render() {
