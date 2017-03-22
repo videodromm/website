@@ -1,0 +1,4 @@
+[submodule "public/The_Force"]
+	path = public/The_Force
+	url = https://github.com/brucelane/The_Force.git
+	branch = gh-pages
