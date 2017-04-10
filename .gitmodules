@@ -2,7 +2,9 @@
 	path = public/The_Force
 	url = https://github.com/brucelane/The_Force.git
 	branch = gh-pages
+
 [submodule "public/glslEditor"]
 	path = public/glslEditor
 	url = https://github.com/videodromm/glslEditor.git
 	branch = gh-pages
+
