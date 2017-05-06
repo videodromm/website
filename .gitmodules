@@ -8,3 +8,9 @@
 	url = https://github.com/videodromm/glslEditor.git
 	branch = gh-pages
 
+[submodule "public/prez"]
+	path = public/prez
+	url = https://github.com/videodromm/prez.git
+[submodule "public/lpm2017"]
+	path = public/lpm2017
+	url = https://github.com/brucelane/lpm2017.git
