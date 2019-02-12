@@ -10,8 +10,8 @@ class App extends Component {
     super(props);
 
     this.state = {
-        wshost:'127.0.0.1',
-        wsport:8088
+      wshost:'127.0.0.1',
+      wsport:8088
     };
     this.changeHost = this.changeHost.bind(this);
     this.changePort = this.changePort.bind(this);
@@ -26,7 +26,7 @@ class App extends Component {
     console.log('v:'+e.target.value);
     this.setState({wshost: e.target.value});
     console.log('h:'+this.state.wshost);
- }
+  }
   changePort(e) {
     console.log('h:'+this.state.wsport);
     console.log('v:'+e.target.value);

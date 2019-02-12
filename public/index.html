@@ -1,84 +1,135 @@
-﻿<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
-          rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <meta property="og:url" content="https://videodromm.com" />
-    <meta property="og:image" content="https://videodromm.com/images/videodromm-logo-square-283.png" />
-    <meta property="og:title" content="Videodromm" />
-    <meta property="og:description" content="Videodromm open source Audio-Visual project" />
 
-    <!-- Compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.0/css/materialize.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/style.css">
-   <!--
-      Notice the use of %PUBLIC_URL% in the tag above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Videodromm</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/vnd.microsoft.icon" />
+  <script src='js/nexusUI.js'></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
 
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
-    <script type="text/javascript" src="lib/jquery-2.1.1.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-    <title>videodromm</title>
-  </head>
-  <body>
-    <header>
-      <nav class="navbar navbar-default" role="navigation">
-        <div class="container">
-          <div class="navbar-header">
-            <button type="button"
-              class="navbar-toggle collapsed"
-              data-toggle="collapse"
-              data-target="#collapsemenu"
-              aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/"><h1>videodromm</h1></a>
-          </div><!-- navbar-header -->
-          <div class="collapse navbar-collapse" id="collapsemenu">
-            <ul class="nav navbar-nav">
-              <li><a href="/w3cContest">W3C Contest</a></li>
-              <li><a href="/The_Force">The_Force</a></li>
-              <li><a href="glsleditor.html">glsleditor</a></li>
-              <li><a href="https://github.com/videodromm" target="_blank">github</a></li>
-              <li><a href="/prez">about</a></li>
-            </ul>
-          </div><!-- collapsemenu -->
-        </div><!-- container -->
-      </nav>
-    </header>
-    <div id="render-target"></div>
-    <!--
-      This HTML file is a template.
-      If you open it directly in the browser, you will see an empty page.
+<body>
+  <header>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#collapsemenu" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">
+            <h1>videodrömm</h1>
+          </a>
+        </div>
+        <!-- navbar-header -->
+        <div class="collapse navbar-collapse" id="collapsemenu">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="glsleditor.html" target="_blank">glsleditor</a>
+            </li>
+            <li>
+              <a href="/selfberry" target="_blank">selfberry</a>
+            </li>
+            <li>
+              <a href="/hydra/?sketch_id=zz2YKA6MxVPV1lnJ&code=YS5zZXRCaW5zKDYpJTBBYmxvYnMoJTBBJTIwJTIwKCklMjAlM0QlM0UlMjBtb3VzZS54JTJDJTBBJTIwJTIwKCklMjAlM0QlM0UlMjBtb3VzZS54JTJDJTBBJTIwJTIwKCklMjAlM0QlM0UlMjBhLmZmdCU1QjElNUQqLTEuMCUwQSkub3V0KG8yKSUwQWRyZWFkcyglMjAoKSUyMCUzRCUzRSUyMChhLmZmdCU1QjAlNUQqMTQuMCklMkMlMjAlMEElMjAlMjAlMjAlMjAlMjAlMjAlMjAoKSUyMCUzRCUzRSUyMChhLmZmdCU1QjElNUQpKjQuMSUyQyUyMCUwQSUyMCUyMCUyMCUyMCUyMCUyMCUyMCgpJTIwJTNEJTNFJTIwKG1vdXNlLngpKjAuMSUwQSUyMCUyMCUyMCUyMCUyMCUyMCkub3V0KG8xKSUwQSUwQXNtb2tlKCUyMCgpJTIwJTNEJTNFJTIwKDMwJTIwKiUyMChNYXRoLnNpbih0aW1lKSUyMCUyQiUyMDEpKSUyMCklMEElMjAlMjAlMjAlMjAuY29sb3IoMC42MSUyQyUyMDAuOTElMkMlMjAwJTIwKSUwQSUwOS5kaWZmKG8yJTJDKCklMjAlM0QlM0UlMjAobW91c2UueCUyQjMuMCkqMC4xKSUwQSUwOS5tYXNrKG8xJTJDKCklMjAlM0QlM0UlMjAobW91c2UueCUyQjMuMCkqMC4xKSUwQSUwOS5vdXQobzMpJTBBJTBBcmVuZGVyKCk=" target="_blank">hydra</a>
+            </li>
+            <li>
+              <a href="/The_Force" target="_blank">The_Force</a>
+            </li>
+            <li>
+              <a href="/w3cContest" target="_blank">W3C Contest</a>
+            </li>
+            <li>
+              <a href="https://github.com/videodromm" target="_blank">github</a>
+            </li>
+            <li>
+              <a href="/prez" target="_blank">about</a>
+            </li>
+          </ul>
+        </div>
+        <!-- collapsemenu -->
+      </div>
+      <!-- container -->
+    </nav>
+  </header>
+<!--   <div>
+    <form id="wsform" class="ui form">
+      <div class="field">
+        <label>ip</label>
+        <input name="ip">
+      </div>
+      <div class="field">
+        <label>port</label>
+        <input name="port">
+      </div>
+      <button class="ui button" type="submit">Submit</button>
+    </form>
+    <div id="message"></div>
+  </div>-->
+  <div className="row">
+    <div className="col col-sm4">
+      <div id="dials"></div>
+    </div>
+    <div className="col col-sm4">
+      <div id="buttons"></div>
+    </div>
+  </div>
+  <div className="row">
+    <div className="col col-sm4">
+      <div id="sliders"></div>
+    </div>
+    <div className="col col-sm4">
+      <div id="dial14"></div>
+    </div>
+  </div>
 
-      You can add webfonts, meta tags, or analytics to this file.
-      The build step will place the bundled scripts into the <body> tag.
+ <!-- 
+  <div id="all-interfaces">
+    <div nexus-ui="dial"></div>
+    <div nexus-ui="slider"></div>
+    <div nexus-ui="toggle" id="toggle"></div>
+    <div nexus-ui="position" id="position"></div>
+    <div nexus-ui="button" id="button"></div>
+    <div nexus-ui="textbutton" id="textbutton"></div>
+    <div nexus-ui="radiobutton" id="radiobutton"></div>
+    <div nexus-ui="number" id="number"></div>
+    <div nexus-ui="select" id="select"></div>
+    <div nexus-ui="piano" id="piano"></div>
+    <div nexus-ui="sequencer" id="sequencer"></div>
+    <div nexus-ui="pan2d" id="pan2D"></div>
+    <div nexus-ui="tilt" id="tilt"></div>
+    <div nexus-ui="multislider"></div>
+    <div nexus-ui="pan" id="pan"></div>
+    <div nexus-ui="envelope" id="envelope"></div>
+    <div nexus-ui="oscilloscope" id="oscilloscope"></div>
+    <div nexus-ui="meter" id="meter"></div>
+    <div nexus-ui="spectrogram" id="spectrogram"></div>
+  </div> -->
 
-      To begin the development, run `npm start`.
-      To create a production bundle, use `npm run build`.
-    -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="js/websocket-lib/ws.js"></script>
 
-      <!-- Google analytics -->
-      <script>
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  <script src="js/nex.js"></script>
 
-        ga('create', 'UA-27878391-1', 'auto');
-        ga('send', 'pageview', location.pathname);
-      </script>
-  </body>
+  <!-- Google analytics -->
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-27878391-1', 'auto');
+    ga('send', 'pageview', location.pathname);
+
+  </script>
+</body>
+
 </html>
